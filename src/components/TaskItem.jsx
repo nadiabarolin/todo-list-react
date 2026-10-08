@@ -1,7 +1,7 @@
-function TaskItem() {
+function TaskItem({tarea}) {
   return (
     <li>
-      <span>Ejemplo de tarea</span>
+      <span>{tarea}</span>
 
       <button>✔</button>
       <button>🗑</button>
