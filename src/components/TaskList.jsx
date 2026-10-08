@@ -1,9 +1,20 @@
-import { useState } from 'react'
+
+import { useState, useEffect } from 'react'
 import TaskForm from './TaskForm'
 import TaskItem from './TaskItem'
+import TaskFilter from './TaskFilter'
 
 function TaskList() {
-  const [tareas, setTareas] = useState([])
+  const [tareas, setTareas] = useState(() => {
+    const tareasGuardadas = localStorage.getItem('tareas')
+    return tareasGuardadas ? JSON.parse(tareasGuardadas) : []
+  })
+
+  const [filtro, setFiltro] = useState('todas')
+
+  useEffect(() => {
+    localStorage.setItem('tareas', JSON.stringify(tareas))
+  }, [tareas])
 
   function agregarTarea(texto) {
     const nuevaTarea = {
@@ -37,14 +48,28 @@ function TaskList() {
     setTareas(nuevasTareas)
   }
 
+  const tareasFiltradas = tareas.filter((tarea) => {
+    if (filtro === 'completadas') {
+      return tarea.completada
+    }
+
+    if (filtro === 'pendientes') {
+      return !tarea.completada
+    }
+
+    return true
+  })
+
   return (
     <section>
       <h2>Mis tareas</h2>
 
       <TaskForm agregarTarea={agregarTarea} />
 
+      <TaskFilter filtro={filtro} setFiltro={setFiltro} />
+
       <ul>
-        {tareas.map((tarea) => (
+        {tareasFiltradas.map((tarea) => (
           <TaskItem
             key={tarea.texto}
             tarea={tarea}
