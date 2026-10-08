@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import TaskForm from './TaskForm'
 import TaskItem from './TaskItem'
+import TaskFilter from './TaskFilter'
 
 function TaskList() {
   const [tareas, setTareas] = useState([])
+  const [filtro, setFiltro] = useState('todas')
 
   function agregarTarea(texto) {
     const nuevaTarea = {
@@ -37,14 +39,28 @@ function TaskList() {
     setTareas(nuevasTareas)
   }
 
+  const tareasFiltradas = tareas.filter((tarea) => {
+  if (filtro === 'completadas') {
+    return tarea.completada
+  }
+
+  if (filtro === 'pendientes') {
+    return !tarea.completada
+  }
+
+  return true
+})
+
   return (
     <section>
       <h2>Mis tareas</h2>
 
       <TaskForm agregarTarea={agregarTarea} />
 
+      <TaskFilter filtro={filtro} setFiltro={setFiltro} />
+
       <ul>
-        {tareas.map((tarea) => (
+        {tareasFiltradas.map((tarea) => (
           <TaskItem
             key={tarea.texto}
             tarea={tarea}
