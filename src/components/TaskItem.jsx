@@ -1,10 +1,9 @@
-function TaskItem() {
+function TaskItem({tarea, completarTarea}) {
   return (
-    <li>
-      <span>Ejemplo de tarea</span>
-
-      <button>✔</button>
-      <button>🗑</button>
+    <li> 
+    <span style={{ textDecoration: tarea.completada ? 'line-through' : 'none', }} > {tarea.texto} </span> 
+    <button onClick={() => completarTarea(tarea.texto)}> ✔ </button> 
+    <button>🗑</button> 
     </li>
   )
 }
