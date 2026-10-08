@@ -5,8 +5,28 @@ import TaskItem from './TaskItem'
 function TaskList() {
   const [tareas, setTareas] = useState([])
 
-  function agregarTarea(nuevaTarea) {
+  function agregarTarea(texto) {
+    const nuevaTarea = {
+      texto: texto,
+      completada: false,
+    }
+
     setTareas([...tareas, nuevaTarea])
+  }
+
+  function completarTarea(textoTarea) {
+    const nuevasTareas = tareas.map((tarea) => {
+      if (tarea.texto === textoTarea) {
+        return {
+          ...tarea,
+          completada: true,
+        }
+      }
+
+      return tarea
+    })
+
+    setTareas(nuevasTareas)
   }
 
   return (
@@ -18,8 +38,9 @@ function TaskList() {
       <ul>
         {tareas.map((tarea) => (
           <TaskItem
-            key={tarea}
+            key={tarea.texto}
             tarea={tarea}
+            completarTarea={completarTarea}
           />
         ))}
       </ul>
@@ -28,3 +49,4 @@ function TaskList() {
 }
 
 export default TaskList
+
