@@ -61,23 +61,51 @@ function TaskList() {
   })
 
   return (
-    <section>
-      <h2>Mis tareas</h2>
+    <section className="mx-auto mt-10 w-full max-w-3xl rounded-2xl bg-white p-6 shadow-xl sm:p-8">
+      <div className="mb-6">
+        <h2 className="text-3xl font-bold text-purple-dark">
+          Mis tareas 📝
+        </h2>
 
-      <TaskForm agregarTarea={agregarTarea} />
+        <p className="mt-2 text-gray-600">
+          Organizá tus pendientes y celebrá cada tarea terminada.
+        </p>
+      </div>
 
-      <TaskFilter filtro={filtro} setFiltro={setFiltro} />
+      <div className="rounded-xl bg-lavender p-4 sm:p-5">
+        <TaskForm agregarTarea={agregarTarea} />
+      </div>
 
-      <ul>
-        {tareasFiltradas.map((tarea) => (
-          <TaskItem
-            key={tarea.texto}
-            tarea={tarea}
-            completarTarea={completarTarea}
-            eliminarTarea={eliminarTarea}
-          />
-        ))}
-      </ul>
+      <div className="my-6">
+        <TaskFilter filtro={filtro} setFiltro={setFiltro} />
+      </div>
+
+      {tareasFiltradas.length === 0 ? (
+        <div className="rounded-xl border-2 border-dashed border-purple-light p-8 text-center">
+          <p className="text-lg font-semibold text-purple-dark">
+            Todavía no hay tareas por acá.
+          </p>
+
+          <p className="mt-2 text-gray-600">
+            Agregá una tarea o probá con otro filtro.
+          </p>
+        </div>
+      ) : (
+        <ul className="flex flex-col gap-3">
+          {tareasFiltradas.map((tarea) => (
+            <TaskItem
+              key={tarea.texto}
+              tarea={tarea}
+              completarTarea={completarTarea}
+              eliminarTarea={eliminarTarea}
+            />
+          ))}
+        </ul>
+      )}
+
+      <p className="mt-6 text-right text-sm text-gray-500">
+        {tareas.length} {tareas.length === 1 ? 'tarea creada' : 'tareas creadas'}
+      </p>
     </section>
   )
 }

@@ -9,15 +9,6 @@ function Register({ volverAlLogin, guardarUsuario }) {
   function manejarRegistro(event) {
     event.preventDefault()
 
-    if (
-      email.trim() === '' ||
-      password === '' ||
-      confirmPassword === ''
-    ) {
-      alert('Completá todos los campos')
-      return
-    }
-
     if (password !== confirmPassword) {
       alert('Las contraseñas no coinciden')
       return
@@ -25,11 +16,10 @@ function Register({ volverAlLogin, guardarUsuario }) {
 
     const nuevoUsuario = {
       email: email.trim(),
-      password: password,
+      password,
     }
 
     localStorage.setItem('usuario', JSON.stringify(nuevoUsuario))
-
     guardarUsuario(nuevoUsuario.email, nuevoUsuario.password)
 
     alert('Registro exitoso')
@@ -37,36 +27,70 @@ function Register({ volverAlLogin, guardarUsuario }) {
   }
 
   return (
-    <section>
-      <h2>Registrarse</h2>
+    <section className="mx-auto mt-10 w-full max-w-md rounded-2xl bg-white p-8 shadow-xl">
+      <h2 className="mb-2 text-center text-3xl font-bold text-purple-dark">
+        ¡Creá tu cuenta!
+      </h2>
 
-      <form onSubmit={manejarRegistro}>
-        <input
-          type="email"
-          placeholder="Correo electrónico"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          required
-        />
+      <p className="mb-6 text-center text-gray-600">
+        Organizá tus tareas de una manera sencilla.
+      </p>
 
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          required
-        />
+      <form onSubmit={manejarRegistro} className="flex flex-col gap-4">
+        <div>
+          <label className="mb-1 block font-medium text-night">
+            Correo electrónico
+          </label>
+          <input
+            type="email"
+            placeholder="tu@email.com"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            required
+            className="w-full rounded-lg border border-purple-light px-4 py-3 outline-none focus:border-purple-dark focus:ring-2 focus:ring-lavender"
+          />
+        </div>
 
-        <input
-          type="password"
-          placeholder="Confirmar contraseña"
-          value={confirmPassword}
-          onChange={(event) => setConfirmPassword(event.target.value)}
-          required
-        />
+        <div>
+          <label className="mb-1 block font-medium text-night">
+            Contraseña
+          </label>
+          <input
+            type="password"
+            placeholder="Creá una contraseña"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            required
+            className="w-full rounded-lg border border-purple-light px-4 py-3 outline-none focus:border-purple-dark focus:ring-2 focus:ring-lavender"
+          />
+        </div>
 
-        <button type="submit">Registrarse</button>
-        <button type="button" onClick={volverAlLogin}>
+        <div>
+          <label className="mb-1 block font-medium text-night">
+            Confirmar contraseña
+          </label>
+          <input
+            type="password"
+            placeholder="Repetí la contraseña"
+            value={confirmPassword}
+            onChange={(event) => setConfirmPassword(event.target.value)}
+            required
+            className="w-full rounded-lg border border-purple-light px-4 py-3 outline-none focus:border-purple-dark focus:ring-2 focus:ring-lavender"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="mt-2 rounded-lg bg-yellow-accent px-4 py-3 font-semibold text-night transition hover:opacity-80"
+        >
+          Registrarme
+        </button>
+
+        <button
+          type="button"
+          onClick={volverAlLogin}
+          className="rounded-lg border border-purple-light px-4 py-3 font-semibold text-purple-dark transition hover:bg-lavender"
+        >
           Volver a iniciar sesión
         </button>
       </form>

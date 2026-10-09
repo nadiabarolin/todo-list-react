@@ -1,15 +1,24 @@
+
 function Navbar({ mostrarRegistro, cerrarSesion, isLoggedIn }) {
   return (
-    <nav className="navbar">
-      <h1>📝 Mi Lista de Tareas</h1>
+    <nav className="flex items-center justify-between bg-purple-dark px-6 py-4 text-white shadow-lg">
+      <h1 className="text-xl font-bold">
+        📝 Mi Lista de Tareas
+      </h1>
 
-      <div className="navbar-buttons">
+      <div className="flex gap-3">
         {isLoggedIn ? (
-          <button onClick={cerrarSesion}>
+          <button
+            onClick={cerrarSesion}
+            className="rounded-lg bg-yellow-accent px-4 py-2 font-semibold text-night transition hover:opacity-80"
+          >
             Cerrar sesión
           </button>
         ) : (
-          <button onClick={mostrarRegistro}>
+          <button
+            onClick={mostrarRegistro}
+            className="rounded-lg bg-yellow-accent px-4 py-2 font-semibold text-night transition hover:opacity-80"
+          >
             Registrarse
           </button>
         )}
