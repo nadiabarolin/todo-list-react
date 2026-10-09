@@ -61,7 +61,7 @@ function TaskList() {
   })
 
   return (
-    <section className="mx-auto mt-10 w-full max-w-3xl rounded-2xl bg-white p-6 shadow-xl sm:p-8">
+    <section className="mx-auto mt-6 w-full max-w-3xl rounded-2xl bg-white p-4 shadow-xl sm:mt-10 sm:p-8">
       <div className="mb-6">
         <h2 className="text-3xl font-bold text-purple-dark">
           Mis tareas 📝

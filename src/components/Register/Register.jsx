@@ -1,7 +1,6 @@
-
 import { useState } from 'react'
 
-function Register({ volverAlLogin, guardarUsuario }) {
+function Register({ volverAlLogin, guardarUsuario, mostrarToast }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -10,7 +9,7 @@ function Register({ volverAlLogin, guardarUsuario }) {
     event.preventDefault()
 
     if (password !== confirmPassword) {
-      alert('Las contraseñas no coinciden')
+      mostrarToast('Las contraseñas no coinciden.', 'error')
       return
     }
 
@@ -20,14 +19,13 @@ function Register({ volverAlLogin, guardarUsuario }) {
     }
 
     localStorage.setItem('usuario', JSON.stringify(nuevoUsuario))
-    guardarUsuario(nuevoUsuario.email, nuevoUsuario.password)
 
-    alert('Registro exitoso')
+    guardarUsuario(nuevoUsuario.email, nuevoUsuario.password)
     volverAlLogin()
   }
 
   return (
-    <section className="mx-auto mt-10 w-full max-w-md rounded-2xl bg-white p-8 shadow-xl">
+    <section className="mx-auto mt-6 w-full max-w-md rounded-2xl bg-white p-5 shadow-xl sm:mt-10 sm:p-8">
       <h2 className="mb-2 text-center text-3xl font-bold text-purple-dark">
         ¡Creá tu cuenta!
       </h2>

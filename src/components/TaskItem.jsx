@@ -12,14 +12,14 @@ function TaskItem({ tarea, completarTarea, eliminarTarea }) {
         {tarea.texto}
       </span>
 
-      <div className="flex gap-2">
+      <div className="flex w-full gap-2 sm:w-auto">
         <button
           type="button"
           onClick={() => completarTarea(tarea.texto)}
           disabled={tarea.completada}
           aria-label="Completar tarea"
           title="Completar tarea"
-          className="rounded-lg bg-purple-dark px-4 py-2 font-semibold text-white transition hover:bg-purple-light hover:text-purple-dark disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex-1 rounded-lg bg-purple-dark px-2 py-2 text-sm font-semibold text-white transition hover:bg-purple-light hover:text-purple-dark disabled:cursor-not-allowed disabled:opacity-50 sm:flex-none sm:px-4 sm:text-base"
         >
           ✔ Completar
         </button>
@@ -29,7 +29,7 @@ function TaskItem({ tarea, completarTarea, eliminarTarea }) {
           onClick={() => eliminarTarea(tarea.texto)}
           aria-label="Eliminar tarea"
           title="Eliminar tarea"
-          className="rounded-lg bg-yellow-accent px-4 py-2 font-semibold text-night transition hover:opacity-80"
+          className="flex-1 rounded-lg bg-yellow-accent px-2 py-2 text-sm font-semibold text-night transition hover:opacity-80 sm:flex-none sm:px-4 sm:text-base"
         >
           🗑 Eliminar
         </button>
