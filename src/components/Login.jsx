@@ -1,7 +1,6 @@
-
 import { useState } from 'react'
 
-function Login({ usuario, iniciarSesion }) {
+function Login({ usuario, iniciarSesion, mostrarToast }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [recordarme, setRecordarme] = useState(false)
@@ -10,30 +9,31 @@ function Login({ usuario, iniciarSesion }) {
     event.preventDefault()
 
     if (!usuario) {
-      alert('Primero tenés que registrarte')
+      mostrarToast('No existe una cuenta registrada. Creá tu cuenta primero.', 'error')
       return
     }
 
     if (
-      email === usuario.email &&
-      password === usuario.password
+      email.trim().toLowerCase() !== usuario.email.toLowerCase() ||
+      password !== usuario.password
     ) {
-      if (recordarme) {
-        localStorage.setItem('sesion', 'activa')
-      } else {
-        localStorage.removeItem('sesion')
-      }
-
-      iniciarSesion()
-    } else {
-      alert('Correo o contraseña incorrectos')
+      mostrarToast('El correo o la contraseña son incorrectos.', 'error')
+      return
     }
+
+    if (recordarme) {
+      localStorage.setItem('sesion', 'activa')
+    } else {
+      localStorage.removeItem('sesion')
+    }
+
+    iniciarSesion()
   }
 
   return (
-    <section className="mx-auto mt-10 w-full max-w-md rounded-2xl bg-white p-8 shadow-xl">
+    <section className="mx-auto mt-6 w-full max-w-md rounded-2xl bg-white p-5 shadow-xl sm:mt-10 sm:p-8">
       <h2 className="mb-2 text-center text-3xl font-bold text-purple-dark">
-        ¡Hola de nuevo!
+        ¡Bienvenida/o!
       </h2>
 
       <p className="mb-6 text-center text-gray-600">
@@ -69,19 +69,19 @@ function Login({ usuario, iniciarSesion }) {
           />
         </div>
 
-        <label className="flex items-center gap-2 text-sm text-gray-700">
+        <label className="flex cursor-pointer items-center gap-2 text-sm text-gray-600">
           <input
             type="checkbox"
             checked={recordarme}
             onChange={(event) => setRecordarme(event.target.checked)}
-            className="accent-purple-dark"
+            className="h-4 w-4 accent-purple-dark"
           />
           Recordarme
         </label>
 
         <button
           type="submit"
-          className="mt-2 rounded-lg bg-purple-dark px-4 py-3 font-semibold text-white transition hover:bg-purple-light hover:text-purple-dark"
+          className="mt-2 rounded-lg bg-yellow-accent px-4 py-3 font-semibold text-night transition hover:opacity-80"
         >
           Iniciar sesión
         </button>
