@@ -1,24 +1,20 @@
+import Footer from './Footer'
+import Navbar from './Navbar'
 
 function Layout({ children, mostrarRegistro, cerrarSesion, isLoggedIn }) {
   return (
     <div className="app">
-      <header>
-        <h1>Mi lista de tareas</h1>
+      <Navbar
+        mostrarRegistro={mostrarRegistro}
+        cerrarSesion={cerrarSesion}
+        isLoggedIn={isLoggedIn}
+      />
 
-        {isLoggedIn ? (
-          <button onClick={cerrarSesion}>Cerrar sesión</button>
-        ) : (
-          <button onClick={mostrarRegistro}>Registrarse</button>
-        )}
-      </header>
-
-      <main>
+      <main className="container">
         {children}
       </main>
 
-      <footer>
-        <p>Mi lista de tareas</p>
-      </footer>
+      <Footer />
     </div>
   )
 }
