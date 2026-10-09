@@ -1,16 +1,60 @@
-# React + Vite
+# 📝 ToDo List React
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Aplicación web de lista de tareas desarrollada con React como proyecto de práctica durante mi formación en Frontend.
 
-Currently, two official plugins are available:
+## 🚀 Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Probá la aplicación publicada:
 
-## React Compiler
+👉 https://todo-list-react-ayzx.vercel.app/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tecnologías utilizadas
 
-## Expanding the Oxlint configuration
+* React
+* JavaScript
+* Vite
+* CSS
+* React Router
+* React Toastify
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## ✨ Funcionalidades
+
+* Registro e inicio de sesión.
+* Navegación entre páginas.
+* Gestión de tareas.
+* Diseño responsive adaptable a diferentes dispositivos.
+* Notificaciones para informar sobre las acciones realizadas.
+
+## 💻 Instalación y ejecución
+
+Cloná el repositorio:
+
+```bash
+git clone https://github.com/nadiabarolin/todo-list-react.git
+```
+
+Ingresá a la carpeta:
+
+```bash
+cd todo-list-react
+```
+
+Instalá las dependencias:
+
+```bash
+pnpm install
+```
+
+Iniciá el servidor de desarrollo:
+
+```bash
+pnpm dev
+```
+
+## 📂 Repositorio
+
+[Ver código fuente en GitHub](https://github.com/nadiabarolin/todo-list-react)
+
+---
+
+Proyecto realizado como parte de mi formación en desarrollo Frontend.
